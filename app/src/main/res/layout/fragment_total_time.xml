@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TotalTimeFragment">
+    tools:context=".TotalTimeFragment"
+    android:background="#0A538C">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"

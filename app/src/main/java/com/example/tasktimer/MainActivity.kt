@@ -8,9 +8,10 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var tLayout:TabLayout//you may need when changing the fragment
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
     }
 }
