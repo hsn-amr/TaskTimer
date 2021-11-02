@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/viewFragment">
+
+    <fragment
+        android:id="@+id/viewFragment"
+        android:name="com.example.tasktimer.ViewFragment"
+        android:label="fragment_view"
+        tools:layout="@layout/fragment_view" >
+        <action
+            android:id="@+id/action_viewFragment_to_newFragment"
+            app:destination="@id/newFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newFragment"
+        android:name="com.example.tasktimer.NewFragment"
+        android:label="fragment_new"
+        tools:layout="@layout/fragment_new" >
+        <action
+            android:id="@+id/action_newFragment_to_totalTimeFragment"
+            app:destination="@id/totalTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/totalTimeFragment"
+        android:name="com.example.tasktimer.TotalTimeFragment"
+        android:label="fragment_total_time"
+        tools:layout="@layout/fragment_total_time" >
+        <action
+            android:id="@+id/action_totalTimeFragment_to_viewFragment"
+            app:destination="@id/viewFragment" />
+    </fragment>
+</navigation>
