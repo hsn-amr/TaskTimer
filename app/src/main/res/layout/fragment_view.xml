@@ -18,11 +18,14 @@
         android:orientation="vertical">
 
 
+<!--        home page frament that host the main functionality of the timer-->
+
+
         <TextView
             android:id="@+id/tvTotalmain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/roboto"
             android:text="Study Kotlin"
             android:textColor="@color/white"
@@ -35,12 +38,13 @@
             android:id="@+id/tvTimemain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/roboto"
             android:text="30:00"
             android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTotalmain" />
 
@@ -48,7 +52,7 @@
             android:id="@+id/btnRestart"
             android:layout_width="110dp"
             android:layout_height="30dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginEnd="60dp"
             android:background="@drawable/transparent_btn_bg"
             android:drawableLeft="@drawable/carbon_restart"
             android:drawablePadding="0dp"
@@ -68,7 +72,7 @@
             android:id="@+id/btnPause"
             android:layout_width="110dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="48dp"
             android:background="@drawable/transparent_btn_bg"
             android:drawableLeft="@drawable/ant_design_pause_outlined"
             android:drawablePadding="0dp"
@@ -81,9 +85,8 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnRestart"
-            app:layout_constraintHorizontal_bias="0.647"
+            app:layout_constraintHorizontal_bias="0.653"
             app:layout_constraintStart_toStartOf="parent" />
-
 
 
         <androidx.constraintlayout.widget.Barrier

@@ -5,6 +5,8 @@
     android:background="@color/primary_blue"
     android:layout_height="wrap_content">
 
+<!--    topbar menu that is included in main activity and details activity-->
+
     <ImageView
         android:id="@+id/btnLines"
         android:layout_width="wrap_content"

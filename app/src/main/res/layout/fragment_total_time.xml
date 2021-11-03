@@ -9,6 +9,9 @@
     android:background="@color/primary_blue">
 
 
+<!--    statictics fragment recyclerview-->
+<!--    this recyclerview will hold expandable items-->
+<!--    and update and delete functions-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"
@@ -17,4 +20,6 @@
         android:padding="20dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/recycler_bg"/>
+
+
 </LinearLayout>

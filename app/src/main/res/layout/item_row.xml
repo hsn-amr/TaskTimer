@@ -7,6 +7,9 @@
     android:background="@drawable/row_shape"
     android:padding="10dp">
 
+
+<!--        row item for fragment_view that hold the session timer-->
+
         <TextView
             android:id="@+id/tvTotal"
             android:layout_width="wrap_content"
