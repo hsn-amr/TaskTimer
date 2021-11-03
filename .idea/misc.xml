@@ -20,17 +20,39 @@
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/day3/TaskTimer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/day3/TaskTimer/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/day3/TaskTimer/app/src/main/res/mipmap-anydpi-v26/listview.xml" value="0.22135416666666666" />
+        <entry key="app/src/main/res/drawable/add_task_bg.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/bgnote.xml" value="0.20625" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_outline_music_note.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_outline_music_off.xml" value="0.21851851851851853" />
+        <entry key="app/src/main/res/drawable/ic_pause.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/ic_reset.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/drawable/itmes.xml" value="0.20625" />
         <entry key="app/src/main/res/drawable/list.xml" value="0.20625" />
         <entry key="app/src/main/res/drawable/listview_background.xml" value="0.20625" />
+        <entry key="app/src/main/res/drawable/primary_btn.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/recycler_bg.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/row_shape.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/total_desc_bg.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/total_title_bg.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/totaltime_background.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/totaltime_foreground.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/transparent_btn_bg.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/uil_setting.xml" value="0.2630208333333333" />
+        <entry key="app/src/main/res/drawable/whh_statistics.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_new.xml" value="0.19010416666666666" />
-        <entry key="app/src/main/res/layout/fragment_total_time.xml" value="0.17604166666666668" />
-        <entry key="app/src/main/res/layout/fragment_view.xml" value="0.17604166666666668" />
-        <entry key="app/src/main/res/layout/item_row.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/fragment_new.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_total_time.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_view.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_row.xml" value="0.335" />
         <entry key="app/src/main/res/layout/totaltime.xml" value="0.19010416666666666" />
+        <entry key="app/src/main/res/layout/totaltime_row.xml" value="0.375" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher2.xml" value="0.14166666666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round2.xml" value="0.14166666666666666" />
       </map>
     </option>
   </component>

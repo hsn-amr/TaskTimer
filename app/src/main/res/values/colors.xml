@@ -11,4 +11,20 @@
     <color name="blue"> #0F6EB8</color>
 
 
+    <!--    theme Colors Primary Green-->
+    <color name="primary_green">#06C5A2</color>
+    <color name="secondary_green">#0CE9C1</color>
+    <color name="light_gray">#F4F4F4</color>
+    <color name="dark_gray">#333333</color>
+    <color name="mid_gray">#EFEFEF</color>
+
+    <!--    theme Colors Primary Blue-->
+    <color name="primary_blue">#1C6EB9</color>
+    <color name="secondary_blue">#0279E5</color>
+
+    <!--    theme Colors Primary Red-->
+    <color name="primary_red">#A90B44</color>
+    <color name="secondary_red">#D10B53</color>
+
+
 </resources>
