@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TotalTimeFragment"
-    android:background="#0A538C">
+    tools:context=".fragments.TotalTimeFragment"
+    android:background="@color/primary_blue">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
