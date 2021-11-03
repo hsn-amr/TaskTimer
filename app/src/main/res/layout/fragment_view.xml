@@ -17,12 +17,12 @@
         android:layout_marginRight="15dp"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/tvTotalmain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="59dp"
-            android:layout_marginBottom="105dp"
+            android:layout_marginTop="36dp"
             android:fontFamily="@font/roboto"
             android:text="Study Kotlin"
             android:textColor="@color/white"
@@ -30,7 +30,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/tvTimemain"
@@ -85,30 +84,7 @@
             app:layout_constraintHorizontal_bias="0.647"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivMusic"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="320dp"
-            android:background="@drawable/ic_outline_music_note"
-            app:layout_constraintBottom_toBottomOf="@+id/ivSettings"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/ivSettings"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/uil_setting"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier2"

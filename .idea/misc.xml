@@ -45,13 +45,15 @@
         <entry key="app/src/main/res/drawable/whh_statistics.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/layout/activity_details.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_new.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/fragment_new.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_total_time.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_view.xml" value="0.45" />
         <entry key="app/src/main/res/layout/item_row.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/top_bar.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/totaltime.xml" value="0.19010416666666666" />
         <entry key="app/src/main/res/layout/totaltime_row.xml" value="0.375" />
         <entry key="app/src/main/res/menu/bottem_menu.xml" value="0.246875" />
+        <entry key="app/src/main/res/menu/top_menu.xml" value="0.246875" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher2.xml" value="0.14166666666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round2.xml" value="0.14166666666666666" />
       </map>
