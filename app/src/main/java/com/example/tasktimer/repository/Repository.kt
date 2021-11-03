@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.tasktimer.database.TaskDao
 import com.example.tasktimer.model.Task
 
-class Repository (private val taskDao: TaskDao) {
+class Repository(private val taskDao: TaskDao) {
 
     val readAllTasks: LiveData<List<Task>> = taskDao.readAllTasks()
 
