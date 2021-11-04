@@ -1,6 +1,7 @@
 package com.example.tasktimer.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -12,13 +13,17 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel (application: Application): AndroidViewModel(application){
 
-    val readAllTasks: LiveData<List<Task>>
-    val repository: Repository
+    private val readAllTasks: LiveData<List<Task>>
+    private val repository: Repository
 
     init {
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = Repository(taskDao)
         readAllTasks = repository.readAllTasks
+    }
+
+    fun getAllTasks(): LiveData<List<Task>>{
+        return readAllTasks
     }
 
     fun addTask(task: Task){
@@ -36,6 +41,12 @@ class TaskViewModel (application: Application): AndroidViewModel(application){
     fun deleteTask(task: Task){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteTask(task)
+        }
+    }
+
+    fun deactivateAllTasks(){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deactivateAllTasks()
         }
     }
 }

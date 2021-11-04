@@ -11,7 +11,7 @@
 <!--        row item for fragment_view that hold the session timer-->
 
         <TextView
-            android:id="@+id/tvTotal"
+            android:id="@+id/tvTitleInHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -1,62 +1,56 @@
 package com.example.tasktimer.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.tasktimer.R
+import com.example.tasktimer.model.Task
+import com.example.tasktimer.viewmodel.TaskViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [NewFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class NewFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new, container, false)
+        val view = inflater.inflate(R.layout.fragment_new, container, false)
+
+        val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
+
+        val taskTitleInput = view.findViewById<EditText>(R.id.etTitle)
+        val taskDescriptionInput = view.findViewById<EditText>(R.id.etDesc)
+        val saveButton = view.findViewById<Button>(R.id.btSave)
+
+        saveButton.setOnClickListener {
+            val taskTitle = taskTitleInput.text.toString()
+            val taskDescription = taskDescriptionInput.text.toString()
+
+            if(taskTitle.isNotEmpty() && taskDescription.isNotEmpty()){
+                val task = Task(0,taskTitle,taskDescription,"00:00:00","00:00:00",false)
+                taskViewModel.addTask(task)
+
+                taskTitleInput.text.clear()
+                taskDescriptionInput.text.clear()
+
+                Toast.makeText(requireContext(),"The Task Has Saved", Toast.LENGTH_LONG).show()
+
+            }else{
+                Toast.makeText(requireContext(),"Please, Enter Full Information", Toast.LENGTH_LONG).show()
+            }
+        }
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NewFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NewFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

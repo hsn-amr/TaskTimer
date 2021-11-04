@@ -13,6 +13,9 @@ interface TaskDao {
     @Query("SELECT * FROM taskTable ORDER BY id ASC")
     fun readAllTasks(): LiveData<List<Task>>
 
+    @Query("UPDATE taskTable SET active = :inactive WHERE active = :active")
+    fun deactivateAllTasks(inactive: Boolean = false, active: Boolean = true)
+
     @Update
     suspend fun updateTask(task: Task)
 

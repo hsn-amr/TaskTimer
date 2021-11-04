@@ -42,53 +42,52 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llDescriptionHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/total_desc_bg"
         android:orientation="vertical">
 
 
+        <TextView
+            android:id="@+id/tvTotatlDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="20dp"
+            android:text="Description"
 
-
-    <TextView
-        android:id="@+id/tvTotatlDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="Description"
-        android:fontFamily="@font/roboto_medium"
-
-        android:textSize="12dp"/>
+            android:textSize="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_margin="5dp"
             android:gravity="end"
-            android:layout_margin="5dp">
+            android:orientation="horizontal">
 
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/roboto"
+                android:text="Update"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_blue" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnUpdate"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="Update"
-            android:textAllCaps="false"
-            android:fontFamily="@font/roboto"
-            android:textColor="@color/primary_blue"
-            android:background="@null"
-            android:backgroundTint="@null" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnDelete"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:text="Update"
-            android:textAllCaps="false"
-            android:fontFamily="@font/roboto"
-            android:textColor="@color/primary_blue"
-            android:background="@null"
-            android:backgroundTint="@null"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDelete"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:backgroundTint="@null"
+                android:fontFamily="@font/roboto"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_blue" />
         </LinearLayout>
 
     </LinearLayout>

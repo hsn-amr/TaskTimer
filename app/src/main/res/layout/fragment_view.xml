@@ -20,7 +20,6 @@
 
 <!--        home page frament that host the main functionality of the timer-->
 
-
         <TextView
             android:id="@+id/tvTotalmain"
             android:layout_width="wrap_content"
