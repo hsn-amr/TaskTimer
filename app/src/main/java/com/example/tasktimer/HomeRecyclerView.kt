@@ -80,8 +80,8 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
                 chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener { chronometer ->
                     viewFragment.mainTime.text = chronometer.text
+                    task.timer = chronometer.text.toString()
                 }
-
 
                 viewFragment.pauseButton.setOnClickListener {
                     chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset

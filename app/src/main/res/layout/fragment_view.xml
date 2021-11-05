@@ -17,9 +17,7 @@
         android:layout_marginRight="15dp"
         android:orientation="vertical">
 
-
-<!--        home page frament that host the main functionality of the timer-->
-
+<!--home page frament that host the main functionality of the timer-->
         <TextView
             android:id="@+id/tvTotalmain"
             android:layout_width="wrap_content"
@@ -73,12 +71,12 @@
             android:layout_height="30dp"
             android:layout_marginBottom="48dp"
             android:background="@drawable/transparent_btn_bg"
-            android:drawableLeft="@drawable/ant_design_pause_outlined"
+            android:drawableLeft="@drawable/ic_play"
             android:drawablePadding="0dp"
             android:drawableTint="@color/white"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Pause"
+            android:text="Resume"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
@@ -86,7 +84,6 @@
             app:layout_constraintEnd_toStartOf="@+id/btnRestart"
             app:layout_constraintHorizontal_bias="0.653"
             app:layout_constraintStart_toStartOf="parent" />
-
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier2"
@@ -97,7 +94,6 @@
             tools:layout_editor_absoluteY="191dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMain"

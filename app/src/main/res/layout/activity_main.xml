@@ -7,15 +7,6 @@
     android:background="@color/primary_blue"
     tools:context=".MainActivity">
 
-<!--    top_bar for custom option menu-->
-    <include
-        android:id="@+id/include"
-        layout="@layout/top_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <!--    fragment container -->
 
     <fragment
@@ -27,9 +18,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
         app:navGraph="@navigation/my_nav" />
-
 
 <!--    bottom navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,10 +31,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

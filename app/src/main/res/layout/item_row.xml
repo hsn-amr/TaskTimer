@@ -7,8 +7,7 @@
     android:background="@drawable/row_shape"
     android:padding="10dp">
 
-
-<!--        row item for fragment_view that hold the session timer-->
+<!--row item for fragment_view that hold the session timer-->
 
         <TextView
             android:id="@+id/tvTitleInHome"
@@ -25,7 +24,5 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
             android:textSize="20dp"/>
-
-
 
 </LinearLayout>

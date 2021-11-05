@@ -9,7 +9,6 @@
     android:padding="20dp"
     tools:context=".fragments.NewFragment">
 
-
 <!--    adding new task fragment layout-->
 
     <LinearLayout
@@ -72,4 +71,5 @@
 
     </LinearLayout>
 </LinearLayout>
+
 </LinearLayout>
