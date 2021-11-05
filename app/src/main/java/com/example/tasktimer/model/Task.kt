@@ -1,5 +1,6 @@
 package com.example.tasktimer.model
 
+import android.widget.Chronometer
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,7 +10,8 @@ data class Task(
     val id: Int,
     var task: String,
     var description: String,
-    val timer: String,
-    val totalTime: String,
-    var active: Boolean
+    var timer: String,
+    var totalTime: String,
+    var active: Boolean,
+    var pauseOffset: Long
 )

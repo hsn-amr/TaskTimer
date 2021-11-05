@@ -36,7 +36,7 @@ class TotalTimeRecyclerView(application: Application, private val context: Conte
 
         holder.itemView.apply {
             tvTotalTitle.text = task.task
-            tvTotalTime.text = task.totalTime
+            tvTotalTime.text = task.totalTime.toString()
             tvTotatlDescription.text = task.description
 
             llDescriptionHolder.isVisible = false

@@ -7,7 +7,7 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.example.tasktimer.model.Task
 
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
+@Database(entities = [Task::class], version = 3, exportSchema = false)
 abstract class TaskDatabase: RoomDatabase() {
 
     abstract fun taskDao(): TaskDao

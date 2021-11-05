@@ -1,10 +1,8 @@
 package com.example.tasktimer.fragments
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,15 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimer.HomeRecyclerView
 import com.example.tasktimer.R
-import android.os.Handler
-import android.widget.Chronometer
 import androidx.core.view.isVisible
+import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
-import java.util.*
-import android.util.Log
-
-import android.os.CountDownTimer
-import com.example.tasktimer.TimerService
+import kotlinx.android.synthetic.main.fragment_view.*
+import kotlinx.android.synthetic.main.item_row.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,6 +39,7 @@ class ViewFragment : Fragment() {
     lateinit var mainTime: TextView
     lateinit var pauseButton: Button
     lateinit var restartButton: Button
+    val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,9 +56,6 @@ class ViewFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_view, container, false)
 
-        val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
-
-        taskViewModel.deactivateAllTasks()
         mainTitle = view.findViewById(R.id.tvTotalmain)
         mainTime = view.findViewById(R.id.tvTimemain)
         pauseButton = view.findViewById(R.id.btnPause)
@@ -71,7 +63,7 @@ class ViewFragment : Fragment() {
         showingButtons(false)
 
         val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
-        val adapter = HomeRecyclerView(requireActivity().application, requireActivity())
+        val adapter = HomeRecyclerView(requireActivity().application, this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(requireContext())
 
@@ -86,6 +78,30 @@ class ViewFragment : Fragment() {
         pauseButton.isVisible = state
         restartButton.isVisible = state
     }
+
+    fun stopAllOtherTimers(tasks: List<Task>, id:Int){
+        for (i in tasks.indices){
+            if(tasks[i].id != id){
+                rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.stop()
+                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
+                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
+                tasks[i].active = false
+                taskViewModel.updateTask(tasks[i])
+            }
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        taskViewModel.deactivateAllTasks()
+        Log.e("TAG","stop")
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        taskViewModel.deactivateAllTasks()
+        Log.e("TAG","destroy")
+    }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

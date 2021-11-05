@@ -1,7 +1,6 @@
 package com.example.tasktimer.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -49,4 +48,5 @@ class TaskViewModel (application: Application): AndroidViewModel(application){
             repository.deactivateAllTasks()
         }
     }
+
 }
