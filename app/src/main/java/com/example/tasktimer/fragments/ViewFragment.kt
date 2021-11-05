@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Chronometer
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -90,7 +89,6 @@ class ViewFragment : Fragment() {
         }
     }
 
-
     override fun onStop() {
         super.onStop()
         for (i in tasks.indices){
@@ -112,7 +110,6 @@ class ViewFragment : Fragment() {
     }
 
     companion object {
-
         // TODO: Rename and change types and number of parameters
         @JvmStatic fun newInstance(param1: String, param2: String) =
                 ViewFragment().apply {

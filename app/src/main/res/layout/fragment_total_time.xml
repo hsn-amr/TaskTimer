@@ -20,5 +20,4 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/recycler_bg"/>
 
-
 </LinearLayout>

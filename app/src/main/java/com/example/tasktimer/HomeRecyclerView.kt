@@ -7,16 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
-import kotlinx.android.synthetic.main.activity_details.view.tvTime
 import kotlinx.android.synthetic.main.item_row.view.*
-
 import android.os.SystemClock
 import android.util.Log
 import android.widget.Chronometer
-import androidx.core.view.doOnDetach
-import androidx.core.view.isVisible
 import com.example.tasktimer.fragments.ViewFragment
-import kotlinx.android.synthetic.main.fragment_view.view.*
 
 class HomeRecyclerView(application: Application, val viewFragment: ViewFragment):
     RecyclerView.Adapter<HomeRecyclerView.ItemViewHolder>() {
@@ -24,7 +19,6 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
     private var tasks = emptyList<Task>()
     private val taskViewModel by lazy { TaskViewModel(application) }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
@@ -112,7 +106,6 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
         notifyDataSetChanged()
     }
 
-
     fun getTotalFromString(oldString:String, newString: String): String {
         var oldHours = 0
         var oldMinutes = 0
@@ -126,7 +119,6 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
             oldMinutes = oldStringArray[1].toInt()
             oldSeconds = oldStringArray[2].toInt()
         }
-
 
         var newHours = 0
         var newMinutes = 0
@@ -156,6 +148,5 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
         return result
     }
-
 
 }

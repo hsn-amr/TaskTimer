@@ -2,11 +2,9 @@ package com.example.tasktimer
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.Navigation
 import com.example.tasktimer.viewmodel.TaskViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,6 +44,5 @@ class MainActivity : AppCompatActivity() {
         taskViewModel.deactivateAllTasks()
         super.onDestroy()
     }
-
 
 }

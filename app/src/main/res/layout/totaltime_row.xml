@@ -2,7 +2,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginBottom="2dp"
     android:padding="10dp">
 
 <!--row for fragment_total_time recyclerview-->

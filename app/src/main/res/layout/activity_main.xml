@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
     <!--    fragment container -->
-
     <fragment
         android:id="@+id/fcView"
         android:name="androidx.navigation.fragment.NavHostFragment"

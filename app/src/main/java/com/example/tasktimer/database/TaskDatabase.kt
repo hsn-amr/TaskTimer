@@ -1,11 +1,8 @@
 package com.example.tasktimer.database
 
-
 import android.content.Context
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.example.tasktimer.model.Task
-
 
 @Database(entities = [Task::class], version = 5, exportSchema = false)
 abstract class TaskDatabase: RoomDatabase() {
@@ -15,7 +12,6 @@ abstract class TaskDatabase: RoomDatabase() {
     companion object{
         @Volatile
         private var INSTANCE: TaskDatabase? = null
-
 
         fun getDatabase(context: Context): TaskDatabase{
             val tempInstance = INSTANCE
@@ -36,7 +32,6 @@ abstract class TaskDatabase: RoomDatabase() {
                 return instance
             }
         }
-
 
     }
 }

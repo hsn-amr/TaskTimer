@@ -1,6 +1,5 @@
 package com.example.tasktimer.model
 
-import android.widget.Chronometer
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
