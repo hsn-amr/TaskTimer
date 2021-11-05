@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Chronometer
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,8 @@ class ViewFragment : Fragment() {
     lateinit var mainTime: TextView
     lateinit var pauseButton: Button
     lateinit var restartButton: Button
+    var tasks = listOf<Task>()
+    var isFirstTime = true
     val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +71,10 @@ class ViewFragment : Fragment() {
         rvMain.layoutManager = LinearLayoutManager(requireContext())
 
         taskViewModel.getAllTasks().observe(viewLifecycleOwner, {
-                allTasks -> adapter.update(allTasks)
+                allTasks -> kotlin.run {
+                    adapter.update(allTasks)
+                    tasks = allTasks
+                }
         })
 
         return view
@@ -81,7 +87,7 @@ class ViewFragment : Fragment() {
 
     fun stopAllOtherTimers(tasks: List<Task>, id:Int){
         for (i in tasks.indices){
-            if(tasks[i].id != id){
+            if(tasks[i].id != id && tasks[i].active){
                 rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.stop()
                 tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
                         rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
@@ -91,10 +97,20 @@ class ViewFragment : Fragment() {
         }
     }
 
+
     override fun onStop() {
         super.onStop()
-        taskViewModel.deactivateAllTasks()
-        Log.e("TAG","stop")
+        for (i in tasks.indices){
+            tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
+            Log.e("TAG","${tasks[i].timer}")
+            isFirstTime = true
+            if(tasks[i].active){
+                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
+                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
+            }
+            taskViewModel.updateTask(tasks[i])
+        }
+
     }
     override fun onDestroy() {
         super.onDestroy()

@@ -16,6 +16,9 @@ interface TaskDao {
     @Query("UPDATE taskTable SET active = :inactive WHERE active = :active")
     fun deactivateAllTasks(inactive: Boolean = false, active: Boolean = true)
 
+    @Query("SELECT * FROM taskTable WHERE active = :active LIMIT 1")
+    fun getTaskByActive(active: Boolean = true): Task
+
     @Update
     suspend fun updateTask(task: Task)
 

@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        taskViewModel.deactivateAllTasks()
 
         //adding the functionality to bottom navigation menu and attaching the fragments
         val bottomNavView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
@@ -50,14 +51,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        super.onStop()
         taskViewModel.deactivateAllTasks()
-        Log.e("TAG","stop")
+        super.onStop()
     }
     override fun onDestroy() {
-        super.onDestroy()
         taskViewModel.deactivateAllTasks()
-        Log.e("TAG","destroy")
+        super.onDestroy()
     }
+
 
 }

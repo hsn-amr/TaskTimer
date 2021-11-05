@@ -23,4 +23,5 @@ class Repository(private val taskDao: TaskDao) {
     suspend fun deactivateAllTasks(){
         taskDao.deactivateAllTasks()
     }
+
 }

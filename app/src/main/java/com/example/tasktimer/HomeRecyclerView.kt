@@ -13,15 +13,14 @@ import kotlinx.android.synthetic.main.item_row.view.*
 import android.os.SystemClock
 import android.util.Log
 import android.widget.Chronometer
+import androidx.core.view.doOnDetach
 import androidx.core.view.isVisible
 import com.example.tasktimer.fragments.ViewFragment
 import kotlinx.android.synthetic.main.fragment_view.view.*
 
 class HomeRecyclerView(application: Application, val viewFragment: ViewFragment):
     RecyclerView.Adapter<HomeRecyclerView.ItemViewHolder>() {
-    class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
-    }
+    class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     private var tasks = emptyList<Task>()
     private val taskViewModel by lazy { TaskViewModel(application) }
@@ -44,10 +43,25 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
         holder.itemView.apply {
             tvTitleInHome.text = task.task
 
+            Log.e("TAG","rv - ${task.timer}")
+            if(viewFragment.isFirstTime && task.timer != "00:00:00"){
+                chronometer.text = task.timer
+                if(position == tasks.size-1){
+                    viewFragment.isFirstTime = false
+                }
+            }
+            if(task.active){
+                viewFragment.mainTitle.text = task.task
+                chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
+                chronometer.start()
+                chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener { chronometer ->
+                    viewFragment.mainTime.text = chronometer.text
+                }
+            }
+
             tvTitleInHome.setOnClickListener {
 
-                viewFragment.stopAllOtherTimers(tasks, task.id)
-
+                viewFragment.stopAllOtherTimers(viewFragment.tasks, task.id)
                 viewFragment.mainTitle.text = task.task
 
                 if(!task.active){
@@ -66,8 +80,8 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
                 chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener { chronometer ->
                     viewFragment.mainTime.text = chronometer.text
-                    task.timer = chronometer.text.toString()
                 }
+
 
                 viewFragment.pauseButton.setOnClickListener {
                     chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
