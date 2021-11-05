@@ -8,7 +8,6 @@
     tools:context=".fragments.TotalTimeFragment"
     android:background="@color/primary_blue">
 
-
 <!--    statictics fragment recyclerview-->
 <!--    this recyclerview will hold expandable items-->
 <!--    and update and delete functions-->
