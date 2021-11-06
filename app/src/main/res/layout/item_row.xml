@@ -21,11 +21,19 @@
             android:fontFamily="@font/roboto"
             android:textSize="20dp" />
 
+        <TextView
+            android:id="@+id/chronometerTimer"
+            android:text="00:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="20dp"/>
         <Chronometer
             android:id="@+id/chronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:visibility="visible"/>
 
 </LinearLayout>

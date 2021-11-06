@@ -65,7 +65,10 @@ class ViewFragment : Fragment() {
         val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
         val adapter = HomeRecyclerView(requireActivity().application, this)
         rvMain.adapter = adapter
-        rvMain.layoutManager = LinearLayoutManager(requireContext())
+        rvMain.layoutManager = LinearLayoutManager(requireContext()).apply {
+            recycleChildrenOnDetach = false
+        }
+
 
         taskViewModel.getAllTasks().observe(viewLifecycleOwner, {
                 allTasks -> kotlin.run {
@@ -82,37 +85,46 @@ class ViewFragment : Fragment() {
         restartButton.isVisible = state
     }
 
+
     fun stopAllOtherTimers(tasks: List<Task>, id:Int){
         for (i in tasks.indices){
             if(tasks[i].id != id && tasks[i].active){
+                tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
                 rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.stop()
                 tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
                         rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
                 tasks[i].active = false
+                rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text = tasks[i].timer
                 taskViewModel.updateTask(tasks[i])
             }
         }
     }
-
-    override fun onStop() {
-        super.onStop()
-        for (i in tasks.indices){
-            tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
-            Log.e("TAG","${tasks[i].timer}")
-            isFirstTime = true
-            if(tasks[i].active){
-                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
-                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
-            }
-            taskViewModel.updateTask(tasks[i])
-        }
-
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        taskViewModel.deactivateAllTasks()
-        Log.e("TAG","destroy")
-    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        for (i in tasks.indices){
+//            tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
+//            isFirstTime = true
+//            if(tasks[i].active){
+//                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
+//                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
+//            }
+//            taskViewModel.updateTask(tasks[i])
+//        }
+//
+//    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        for (i in tasks.indices){
+//            tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
+//            isFirstTime = true
+//            if(tasks[i].active){
+//                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
+//                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
+//            }
+//            taskViewModel.updateTask(tasks[i])
+//        }
+//    }
 
     companion object {
         // TODO: Rename and change types and number of parameters

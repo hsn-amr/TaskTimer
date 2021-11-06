@@ -102,12 +102,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onStop() {
-        taskViewModel.deactivateAllTasks()
-        super.onStop()
-        taskViewModel.deactivateAllTasks()
-        super.onDestroy()
-    }
+    
 
 }
