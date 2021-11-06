@@ -1,6 +1,5 @@
 package com.example.tasktimer
 
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,13 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
 import com.example.tasktimer.fragments.ViewFragment
 import com.example.tasktimer.viewmodel.TaskViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.fragment.app.FragmentManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         taskViewModel.deactivateAllTasks()
-
 
         //adding the functionality to bottom navigation menu and attaching the fragments
         bottomNavView = findViewById(R.id.bottomNavigationView)

@@ -2,20 +2,17 @@ package com.example.tasktimer.fragments
 
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimer.HomeRecyclerView
 import com.example.tasktimer.R
 import androidx.core.view.isVisible
-import com.example.tasktimer.MainActivity
 import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_view.*
@@ -31,7 +28,6 @@ class ViewFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var noTaskAddedLL: LinearLayout
     lateinit var mainTitle: TextView
     lateinit var mainTime: TextView
     lateinit var pauseButton: Button
@@ -39,8 +35,6 @@ class ViewFragment : Fragment() {
     var tasks = listOf<Task>()
     var isFirstTime = true
     val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,9 +51,6 @@ class ViewFragment : Fragment() {
         val instance= this;
         val view = inflater.inflate(R.layout.fragment_view, container, false)
 
-//        noTaskAddedLL = view.findViewById(R.id.noTaskAddedLL)
-//        noTaskAddedLL.isVisible = tasks.isEmpty()
-
         mainTitle = view.findViewById(R.id.tvTotalmain)
         mainTime = view.findViewById(R.id.tvTimemain)
         pauseButton = view.findViewById(R.id.btnPause)
@@ -72,7 +63,6 @@ class ViewFragment : Fragment() {
         rvMain.layoutManager = LinearLayoutManager(requireContext()).apply {
             recycleChildrenOnDetach = false
         }
-
 
         taskViewModel.getAllTasks().observe(viewLifecycleOwner, {
                 allTasks -> kotlin.run {
@@ -88,7 +78,6 @@ class ViewFragment : Fragment() {
         pauseButton.isVisible = state
         restartButton.isVisible = state
     }
-
 
     fun stopAllOtherTimers(tasks: List<Task>, id:Int){
         for (i in tasks.indices){
@@ -118,7 +107,6 @@ class ViewFragment : Fragment() {
 //            }
 //        }
 //    }
-
 
     companion object {
         // TODO: Rename and change types and number of parameters
