@@ -41,11 +41,11 @@
             android:id="@+id/tvTotalmain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/roboto"
             android:text=""
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
