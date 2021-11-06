@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:title="How to use" />
+
+
+    <item
+        android:id="@+id/viewFragment"
+        android:title="Home"
+
+        android:icon="@drawable/bottome_home"/>
+    <item
+        android:id="@+id/newFragment"
+        android:title="Add"
+
+        android:icon="@drawable/carbon_add"/>
+    <item
+        android:id="@+id/totalTimeFragment"
+        android:title="Stat"
+        android:icon="@drawable/totaltime_foreground"/>
 </menu>
