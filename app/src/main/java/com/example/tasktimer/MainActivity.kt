@@ -8,9 +8,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
+import com.example.tasktimer.fragments.ViewFragment
 import com.example.tasktimer.viewmodel.TaskViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.FragmentManager
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,12 +30,14 @@ class MainActivity : AppCompatActivity() {
 
     private val taskViewModel by lazy { TaskViewModel(application) }
     lateinit var bottomNavView: BottomNavigationView
+    val fragment = ViewFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         taskViewModel.deactivateAllTasks()
+
 
         //adding the functionality to bottom navigation menu and attaching the fragments
         bottomNavView = findViewById(R.id.bottomNavigationView)
@@ -46,7 +53,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         sharedPreferences = this.getSharedPreferences(
-            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            getString(R.string.preference_file_key), MODE_PRIVATE
+        )
         instructions = sharedPreferences.getInt("instructions", 0)
 
         if (instructions == 0){
@@ -102,6 +110,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    
+
 
 }

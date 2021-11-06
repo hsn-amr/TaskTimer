@@ -32,7 +32,7 @@ class NewFragment : Fragment() {
             val taskDescription = taskDescriptionInput.text.toString()
 
             if(taskTitle.isNotEmpty() && taskDescription.isNotEmpty()){
-                val task = Task(0,taskTitle,taskDescription,"00:00:00","00:00:00",false,0L)
+                val task = Task(0,taskTitle,taskDescription,"00:00","00:00",false,0L)
                 taskViewModel.addTask(task)
 
                 taskTitleInput.text.clear()

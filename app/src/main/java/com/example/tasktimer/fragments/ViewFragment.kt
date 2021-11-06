@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimer.HomeRecyclerView
 import com.example.tasktimer.R
 import androidx.core.view.isVisible
+import com.example.tasktimer.MainActivity
 import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_view.*
@@ -39,6 +40,8 @@ class ViewFragment : Fragment() {
     var isFirstTime = true
     val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -51,6 +54,7 @@ class ViewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        val instance= this;
         val view = inflater.inflate(R.layout.fragment_view, container, false)
 
 //        noTaskAddedLL = view.findViewById(R.id.noTaskAddedLL)
@@ -88,7 +92,7 @@ class ViewFragment : Fragment() {
 
     fun stopAllOtherTimers(tasks: List<Task>, id:Int){
         for (i in tasks.indices){
-            if(tasks[i].id != id && tasks[i].active){
+            if(tasks[i].id != id && tasks[i].active ){
                 tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
                 rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.stop()
                 tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
@@ -99,32 +103,22 @@ class ViewFragment : Fragment() {
             }
         }
     }
-//
-//    override fun onStop() {
-//        super.onStop()
+
+//    fun x(){
 //        for (i in tasks.indices){
-//            tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
-//            isFirstTime = true
-//            if(tasks[i].active){
-//                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
-//                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
+//            if(rvMain.adapter!!.getItemId(i) != -1L){
+//                Log.e("TAG","done")
+//                tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
+//                isFirstTime = true
+//                if(tasks[i].active){
+//                    tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
+//                            rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
+//                }
+//                taskViewModel.updateTask(tasks[i])
 //            }
-//            taskViewModel.updateTask(tasks[i])
-//        }
-//
-//    }
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        for (i in tasks.indices){
-//            tasks[i].timer = rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.text.toString()
-//            isFirstTime = true
-//            if(tasks[i].active){
-//                tasks[i].pauseOffset = SystemClock.elapsedRealtime() -
-//                        rvMain.findViewHolderForAdapterPosition(i)!!.itemView.chronometer.base
-//            }
-//            taskViewModel.updateTask(tasks[i])
 //        }
 //    }
+
 
     companion object {
         // TODO: Rename and change types and number of parameters

@@ -36,20 +36,15 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         holder.setIsRecyclable(false)
-
         val task = tasks[position]
 
         holder.itemView.apply {
             tvTitleInHome.text = task.task
 
-            Log.e("TAG","rv - ${task.timer}")
-            if(viewFragment.isFirstTime && task.timer != "00:00:00"){
-                chronometer.text = task.timer
-                if(position == tasks.size-1){
-                    viewFragment.isFirstTime = false
-                }
+            chronometer.text = task.timer
+            if(position == tasks.size-1){
+                viewFragment.isFirstTime = false
             }
-
 
             if(task.active){
                 chronometer.text = task.timer
@@ -67,6 +62,7 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
                 if(!task.active){
                     viewFragment.stopAllOtherTimers(viewFragment.tasks, task.id)
+
                     chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
                     chronometer.start()
                     task.active = true
@@ -77,6 +73,7 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
                     chronometer.stop()
                     task.pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
                     task.active = false
+                    Log.e("TAG","${task.timer}")
                     chronometer.text = task.timer
                     taskViewModel.updateTask(task)
                     viewFragment.showingButtons(true)
@@ -84,7 +81,6 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
                 chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener { chronometer ->
                     viewFragment.mainTime.text = chronometer.text
-                    task.timer = chronometer.text.toString()
                 }
 
                 viewFragment.pauseButton.setOnClickListener {
@@ -105,9 +101,10 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
                     viewFragment.showingButtons(false)
                 }
             }
-
         }
+
     }
+
 
     override fun getItemCount() = tasks.size
 
