@@ -11,7 +11,9 @@ import kotlinx.android.synthetic.main.item_row.view.*
 import android.os.SystemClock
 import android.util.Log
 import android.widget.Chronometer
+import androidx.core.view.isVisible
 import com.example.tasktimer.fragments.ViewFragment
+import kotlinx.android.synthetic.main.fragment_view.view.*
 
 class HomeRecyclerView(application: Application, val viewFragment: ViewFragment):
     RecyclerView.Adapter<HomeRecyclerView.ItemViewHolder>() {
@@ -44,6 +46,7 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
                     viewFragment.isFirstTime = false
                 }
             }
+
             if(task.active){
                 viewFragment.mainTitle.text = task.task
                 chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
