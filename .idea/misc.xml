@@ -23,6 +23,7 @@
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/ic_outline_music_off.xml" value="0.3828125" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/ic_pause.xml" value="0.3828125" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/ic_reset.xml" value="0.3828125" />
+        <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/menu_lines.xml" value="0.3828125" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/total_title_bg.xml" value="0.3828125" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/totaltime_background.xml" value="0.3828125" />
         <entry key="..\:/Users/math1/Downloads/courses/app_dev/MOBILE_ANDROID_ADVANCED/week7/TaskTimer/app/src/main/res/drawable/totaltime_foreground.xml" value="0.3828125" />
@@ -68,9 +69,6 @@
         <entry key="app/src/main/res/layout/totaltime.xml" value="0.19010416666666666" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_outline_music_off.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
