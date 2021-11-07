@@ -86,7 +86,7 @@ class TotalTimeRecyclerView(application: Application, private val context: Conte
     fun deleteDialog(task: Task){
         val dialog = AlertDialog.Builder(context)
             .setTitle("Delete Task")
-            .setMessage("Do You Want To Delete This Task")
+            .setMessage("Do You Want To Delete This Task?")
             .setPositiveButton("yes"){_,_ ->
                 taskViewModel.deleteTask(task)
             }

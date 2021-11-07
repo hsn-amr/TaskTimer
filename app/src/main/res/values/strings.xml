@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TaskTimer</string>
+    <string name="app_name">Task Timer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="preference_file_key">com.example.tasktimer.PREFERENCE_FILE_KEY</string>

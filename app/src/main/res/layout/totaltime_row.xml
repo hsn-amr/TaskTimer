@@ -72,7 +72,7 @@
                 android:background="@null"
                 android:backgroundTint="@null"
                 android:fontFamily="@font/roboto"
-                android:text="Update"
+                android:text="Edit"
                 android:textAllCaps="false"
                 android:textColor="@color/primary_blue" />
 
