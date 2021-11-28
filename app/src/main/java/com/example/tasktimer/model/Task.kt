@@ -13,5 +13,6 @@ data class Task(
     var timer: String,
     var totalTime: String,
     var active: Boolean,
+    var isClicked: Boolean,
     var pauseOffset: Long
 )

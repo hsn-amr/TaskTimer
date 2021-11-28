@@ -1,32 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="2dp"
     android:layout_marginLeft="15dp"
+    android:layout_marginTop="2dp"
     android:layout_marginRight="15dp"
     android:layout_marginBottom="2dp"
     android:background="@drawable/row_shape"
+    android:orientation="vertical"
     android:padding="10dp">
 
-<!--row item for fragment_view that hold the session timer-->
+        <!--row item for fragment_view that hold the session timer-->
 
-        <TextView
-            android:id="@+id/tvTitleInHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Workout"
-            android:fontFamily="@font/roboto"
-            android:textSize="20dp" />
+            android:orientation="horizontal">
 
-        <Chronometer
-            android:id="@+id/chronometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:textSize="20dp"
-            android:visibility="visible"/>
+                <TextView
+                    android:id="@+id/tvTitleInHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
+                    android:text="Workout"
+                    android:textSize="20dp" />
+
+                <Chronometer
+                    android:id="@+id/chronometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="20dp"
+                    android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llOptionsHolder"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+                <android.widget.Button
+                    android:id="@+id/btnStop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparent_btn_bg"
+                    android:drawableLeft="@drawable/ic_stop"
+                    android:drawablePadding="0dp"
+                    android:drawableTint="@color/primary_blue"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Stop"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="12sp" />
+
+                <android.widget.Button
+                    android:id="@+id/btnRestart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparent_btn_bg"
+                    android:drawableLeft="@drawable/carbon_restart"
+                    android:drawablePadding="0dp"
+                    android:drawableTint="@color/primary_blue"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Restart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="12sp" />
+        </LinearLayout>
 
 </LinearLayout>

@@ -32,13 +32,17 @@ class NewFragment : Fragment() {
             val taskDescription = taskDescriptionInput.text.toString()
 
             if(taskTitle.isNotEmpty() && taskDescription.isNotEmpty()){
-                val task = Task(0,taskTitle,taskDescription,"00:00","00:00",false,0L)
+                val task = Task(0,taskTitle,taskDescription,"00:00","00:00:00",
+                    active = false,
+                    isClicked = false,
+                    pauseOffset = 0L
+                )
                 taskViewModel.addTask(task)
 
                 taskTitleInput.text.clear()
                 taskDescriptionInput.text.clear()
 
-                Toast.makeText(requireContext(),"The Task Was Saved", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(),"The Task Has Saved", Toast.LENGTH_LONG).show()
 
             }else{
                 Toast.makeText(requireContext(),"Please, Enter Full Information", Toast.LENGTH_LONG).show()

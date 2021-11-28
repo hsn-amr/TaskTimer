@@ -31,7 +31,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <Chronometer
             android:id="@+id/tvTimemain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,52 +45,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTotalmain" />
 
-        <android.widget.Button
-            android:id="@+id/btnRestart"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/transparent_btn_bg"
-            android:drawableLeft="@drawable/carbon_restart"
-            android:drawablePadding="0dp"
-            android:drawableTint="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="Restart"
-            android:textAllCaps="false"
+        <TextView
+            android:id="@+id/tvDescriptionmain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/roboto"
+            android:text=""
             android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btnPause"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnPause"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <android.widget.Button
-            android:id="@+id/btnPause"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="48dp"
-            android:background="@drawable/transparent_btn_bg"
-            android:drawableLeft="@drawable/ic_play"
-            android:drawablePadding="0dp"
-            android:drawableTint="@color/white"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="Resume"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnRestart"
-            app:layout_constraintHorizontal_bias="0.653"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvTimemain" />
+
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="btnPause"
             tools:layout_editor_absoluteY="191dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

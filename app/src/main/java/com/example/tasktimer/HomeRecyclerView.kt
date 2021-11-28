@@ -10,11 +10,11 @@ import com.example.tasktimer.viewmodel.TaskViewModel
 import kotlinx.android.synthetic.main.item_row.view.*
 import android.os.SystemClock
 import android.util.Log
+import android.widget.Button
 import android.widget.Chronometer
-import androidx.core.view.doOnDetach
 import androidx.core.view.isVisible
 import com.example.tasktimer.fragments.ViewFragment
-import kotlinx.android.synthetic.main.fragment_view.view.*
+import kotlinx.android.synthetic.main.fragment_view.*
 
 class HomeRecyclerView(application: Application, val viewFragment: ViewFragment):
     RecyclerView.Adapter<HomeRecyclerView.ItemViewHolder>() {
@@ -35,76 +35,79 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
+        val mainTimer = viewFragment.tvTimemain
+
         holder.setIsRecyclable(false)
         val task = tasks[position]
 
         holder.itemView.apply {
+
             tvTitleInHome.text = task.task
-
             chronometer.text = task.timer
-            if(position == tasks.size-1){
-                viewFragment.isFirstTime = false
+
+            if(task.active && task.isClicked){
+                viewFragment.mainTitle.text = task.task
+                viewFragment.mainDescription.text = task.description
+                mainTimer.base = SystemClock.elapsedRealtime() - task.pauseOffset
+                mainTimer.start()
+
+                llOptionsHolder.isVisible = true
+                task.isClicked = false
+                taskViewModel.updateTask(task)
+            }else if (task.active && !task.isClicked){
+                mainTimer.onChronometerTickListener = Chronometer.OnChronometerTickListener { mainChronometer ->
+                    chronometer.text = mainChronometer.text
+                }
+            }else if (!task.active && !task.isClicked){
+                llOptionsHolder.isVisible = false
             }
 
-            if(task.active){
-                chronometer.text = task.timer
-                viewFragment.mainTitle.text = task.task
-                chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
-                chronometer.start()
-                chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener { chronometer ->
-                    viewFragment.mainTime.text = chronometer.text
-                }
-            }
 
             tvTitleInHome.setOnClickListener {
-
-                viewFragment.mainTitle.text = task.task
-
                 if(!task.active){
-                    viewFragment.stopAllOtherTimers(viewFragment.tasks, task.id)
-
-                    chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
-                    chronometer.start()
+                    for (activeTask in tasks){
+                        if(activeTask.active){
+                            stopTimer(activeTask, mainTimer)
+                        }
+                    }
+                    viewFragment.mainTitle.text = task.task
+                    taskViewModel.deactivateAllTasks()
                     task.active = true
+                    task.isClicked = true
                     taskViewModel.updateTask(task)
-                    viewFragment.showingButtons(false)
-                }else{
-                    task.timer = chronometer.text.toString()
-                    chronometer.stop()
-                    task.pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
-                    task.active = false
-                    Log.e("TAG","${task.timer}")
-                    chronometer.text = task.timer
-                    taskViewModel.updateTask(task)
-                    viewFragment.showingButtons(true)
-                }
-
-                chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener { chronometer ->
-                    viewFragment.mainTime.text = chronometer.text
-                }
-
-                viewFragment.pauseButton.setOnClickListener {
-                    chronometer.base = SystemClock.elapsedRealtime() - task.pauseOffset
-                    chronometer.start()
-                    task.active = true
-                    taskViewModel.updateTask(task)
-                    viewFragment.showingButtons(false)
-                }
-
-                viewFragment.restartButton.setOnClickListener {
-                    task.totalTime = getTotalFromString(task.totalTime, chronometer.text.toString())
-                    chronometer.base = SystemClock.elapsedRealtime()
-                    task.pauseOffset = 0
-                    chronometer.start()
-                    task.active = true
-                    taskViewModel.updateTask(task)
-                    viewFragment.showingButtons(false)
                 }
             }
+
+            btnStop.setOnClickListener {
+                stopTimer(task, mainTimer)
+            }
+            btnRestart.setOnClickListener {
+                restartTimer(task, mainTimer)
+            }
+
         }
 
     }
 
+    private fun stopTimer(task: Task, chronometer: Chronometer){
+        task.timer = chronometer.text.toString()
+        chronometer.stop()
+        task.pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
+        task.active = false
+        taskViewModel.updateTask(task)
+    }
+
+    private fun restartTimer(task:Task, chronometer: Chronometer){
+        task.totalTime = getTotalFromString(task.totalTime, chronometer.text.toString())
+        task.timer = "00:00"
+        chronometer.base = SystemClock.elapsedRealtime()
+        task.pauseOffset = 0
+        chronometer.stop()
+        task.active = false
+        taskViewModel.updateTask(task)
+        viewFragment.mainTitle.text = ""
+        viewFragment.mainDescription.text = ""
+    }
 
     override fun getItemCount() = tasks.size
 
@@ -113,15 +116,15 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
         notifyDataSetChanged()
     }
 
-    fun getTotalFromString(oldString:String, newString: String): String {
+    private fun getTotalFromString(oldString: String, newString: String): String {
         var oldHours = 0
         var oldMinutes = 0
         var oldSeconds = 0
         val oldStringArray = oldString.split(":")
-        if(oldStringArray.size == 2){
+        if (oldStringArray.size == 2) {
             oldMinutes = oldStringArray[0].toInt()
             oldSeconds = oldStringArray[1].toInt()
-        }else{
+        } else {
             oldHours = oldStringArray[0].toInt()
             oldMinutes = oldStringArray[1].toInt()
             oldSeconds = oldStringArray[2].toInt()
@@ -131,29 +134,27 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
         var newMinutes = 0
         var newSeconds = 0
         val newStringArray = newString.split(":")
-        if(newStringArray.size == 2){
+        if (newStringArray.size == 2) {
             newMinutes = newStringArray[0].toInt() + oldMinutes
             newSeconds = newStringArray[1].toInt() + oldSeconds
-        }else{
+        } else {
             newHours = newStringArray[0].toInt() + oldHours
             newMinutes = newStringArray[1].toInt() + oldMinutes
             newSeconds = newStringArray[2].toInt() + oldSeconds
         }
 
-        if(newSeconds>=60){
-            newMinutes += newSeconds/60
+        if (newSeconds >= 60) {
+            newMinutes += newSeconds / 60
             newSeconds %= 60
         }
-        if(newMinutes>=60){
-            newHours += newMinutes/60
+        if (newMinutes >= 60) {
+            newHours += newMinutes / 60
             newMinutes %= 60
         }
 
-        val result = (if (newHours < 10) "0$newHours" else newHours).toString() +
+        return (if (newHours < 10) "0$newHours" else newHours).toString() +
                 ":" + (if (newMinutes < 10) "0$newMinutes" else newMinutes) +
                 ":" + if (newSeconds < 10) "0$newSeconds" else newSeconds
-
-        return result
     }
 
 }
