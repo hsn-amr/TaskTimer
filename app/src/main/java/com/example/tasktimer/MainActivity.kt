@@ -3,12 +3,15 @@ package com.example.tasktimer
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
+import android.widget.Chronometer
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import com.example.tasktimer.fragments.ViewFragment
+import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -75,6 +78,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
+
 
     //** user instructions
     fun instructions(){

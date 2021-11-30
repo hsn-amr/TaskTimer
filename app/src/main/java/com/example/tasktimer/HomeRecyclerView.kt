@@ -15,6 +15,7 @@ import android.widget.Chronometer
 import androidx.core.view.isVisible
 import com.example.tasktimer.fragments.ViewFragment
 import kotlinx.android.synthetic.main.fragment_view.*
+import kotlinx.coroutines.CoroutineScope
 
 class HomeRecyclerView(application: Application, val viewFragment: ViewFragment):
     RecyclerView.Adapter<HomeRecyclerView.ItemViewHolder>() {
@@ -35,7 +36,7 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
-        val mainTimer = viewFragment.tvTimemain
+        val mainTimer = viewFragment.mainTimer
 
         holder.setIsRecyclable(false)
         val task = tasks[position]
@@ -71,7 +72,6 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
                         }
                     }
                     viewFragment.mainTitle.text = task.task
-                    taskViewModel.deactivateAllTasks()
                     task.active = true
                     task.isClicked = true
                     taskViewModel.updateTask(task)
@@ -94,6 +94,7 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
         chronometer.stop()
         task.pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
         task.active = false
+        task.isClicked = false
         taskViewModel.updateTask(task)
     }
 
@@ -104,6 +105,7 @@ class HomeRecyclerView(application: Application, val viewFragment: ViewFragment)
         task.pauseOffset = 0
         chronometer.stop()
         task.active = false
+        task.isClicked = false
         taskViewModel.updateTask(task)
         viewFragment.mainTitle.text = ""
         viewFragment.mainDescription.text = ""

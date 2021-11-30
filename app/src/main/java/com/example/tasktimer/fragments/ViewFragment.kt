@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Chronometer
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimer.HomeRecyclerView
@@ -15,6 +17,7 @@ import com.example.tasktimer.R
 import androidx.core.view.isVisible
 import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_view.*
 import kotlinx.android.synthetic.main.item_row.view.*
 
@@ -23,10 +26,10 @@ class ViewFragment : Fragment() {
 
     lateinit var adapter: HomeRecyclerView
     lateinit var mainTitle: TextView
-    lateinit var mainTime: TextView
+    lateinit var mainTimer: Chronometer
     lateinit var mainDescription: TextView
-    var tasks = listOf<Task>()
-    val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
+    private var tasks = listOf<Task>()
+    private val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +41,7 @@ class ViewFragment : Fragment() {
 
         mainTitle = view.findViewById(R.id.tvTotalmain)
         mainDescription = view.findViewById(R.id.tvDescriptionmain)
-        mainTime = view.findViewById(R.id.tvTimemain)
+        mainTimer = view.findViewById(R.id.tvTimemain)
 
         val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
         adapter = HomeRecyclerView(requireActivity().application, this)
@@ -57,5 +60,25 @@ class ViewFragment : Fragment() {
         return view
     }
 
+
+    override fun onStop() {
+        super.onStop()
+        // stop active timer user moves to other fragment
+        stopActiveTimer()
+    }
+
+    private fun stopActiveTimer(){
+        for (task in tasks){
+            if(task.active){
+                Toast.makeText(requireContext(), "Timer Stopped", Toast.LENGTH_LONG).show()
+                task.timer = mainTimer.text.toString()
+                mainTimer.stop()
+                task.pauseOffset = SystemClock.elapsedRealtime() - mainTimer.base
+                task.active = false
+                task.isClicked = false
+                taskViewModel.updateTask(task)
+            }
+        }
+    }
 
 }
