@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        taskViewModel.deactivateAllTasks()
-
         //adding the functionality to bottom navigation menu and attaching the fragments
         bottomNavView = findViewById(R.id.bottomNavigationView)
         val navController = Navigation.findNavController(this, R.id.fcView)
@@ -69,9 +67,11 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.viewFragment)
                 }
                 R.id.newFragment -> {
+                    userMoved()
                     navController.navigate(R.id.newFragment)
                 }
                 R.id.totalTimeFragment -> {
+                    userMoved()
                     navController.navigate(R.id.totalTimeFragment)
                 }
             }
@@ -79,10 +79,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun userMoved(){
+        with(sharedPreferences.edit()){
+            putBoolean("userMoved", true)
+            apply()
+        }
+    }
 
     //** user instructions
-    fun instructions(){
+    private fun instructions(){
         imageView = findViewById(R.id.imageView1)
         imageView.isVisible = true
 
