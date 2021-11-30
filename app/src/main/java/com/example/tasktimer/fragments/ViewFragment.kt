@@ -63,7 +63,13 @@ class ViewFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        // stop active timer user moves to other fragment
+        // stop active timer before user moves to other fragment
+        stopActiveTimer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // stop active timer before app close
         stopActiveTimer()
     }
 
