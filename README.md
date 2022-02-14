@@ -17,4 +17,6 @@ Task Timer prototype: https://www.figma.com/file/W5OqrFQAg3GHzWehjT7ubC/Untitled
 Task Timer demo: https://youtu.be/Bz8cLr8ngg4
 
 ### v 1.1
-ٍSmall changes to the user interface
+Small changes to the user interface
+
+<img src="Home v1.1.png" data-canonical-src="Home v1.1.png" width="200"/>
