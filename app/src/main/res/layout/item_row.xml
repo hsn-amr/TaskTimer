@@ -49,16 +49,17 @@
                     android:id="@+id/btnStop"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/transparent_btn_bg"
+                    android:background="@drawable/primary_btn"
                     android:drawableLeft="@drawable/ic_stop"
                     android:drawablePadding="0dp"
-                    android:drawableTint="@color/primary_blue"
+                    android:drawableTint="@color/white"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Stop"
                     android:textAllCaps="false"
-                    android:textColor="@color/primary_blue"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
 
                 <android.widget.Button
@@ -66,15 +67,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/transparent_btn_bg"
+                    android:background="@drawable/primary_btn"
                     android:drawableLeft="@drawable/carbon_restart"
                     android:drawablePadding="0dp"
-                    android:drawableTint="@color/primary_blue"
+                    android:drawableTint="@color/white"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Restart"
                     android:textAllCaps="false"
-                    android:textColor="@color/primary_blue"
+                    android:textColor="@color/white"
                     android:textSize="12sp" />
         </LinearLayout>
 

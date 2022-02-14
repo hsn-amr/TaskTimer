@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/TaskTimer/app/src/main/res/drawable/recycler_bg.xml" value="0.2703125" />
         <entry key="..\:/AndroidStudioProjects/TaskTimer/app/src/main/res/drawable/row_shape.xml" value="0.2703125" />
         <entry key="..\:/AndroidStudioProjects/TaskTimer/app/src/main/res/drawable/row_shape_active.xml" value="0.2703125" />
         <entry key="..\:/AndroidStudioProjects/TaskTimer/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />

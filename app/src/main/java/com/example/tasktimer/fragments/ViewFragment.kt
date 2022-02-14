@@ -3,11 +3,11 @@ package com.example.tasktimer.fragments
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Chronometer
 import android.widget.TextView
 import android.widget.Toast
@@ -16,21 +16,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimer.HomeRecyclerView
 import com.example.tasktimer.R
-import androidx.core.view.isVisible
+import com.example.tasktimer.interfaces.ActiveTask
 import com.example.tasktimer.model.Task
 import com.example.tasktimer.viewmodel.TaskViewModel
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_view.*
-import kotlinx.android.synthetic.main.item_row.view.*
 
 
-class ViewFragment : Fragment() {
+class ViewFragment : Fragment(), ActiveTask {
 
     private lateinit var sharedPreferences: SharedPreferences
-    lateinit var adapter: HomeRecyclerView
-    lateinit var mainTitle: TextView
-    lateinit var mainTimer: Chronometer
-    lateinit var mainDescription: TextView
+    private lateinit var rvMain: RecyclerView
+    private lateinit var adapter: HomeRecyclerView
+    private lateinit var mainTitle: TextView
+    private lateinit var mainTimer: Chronometer
+    private lateinit var mainDescription: TextView
     private var tasks = listOf<Task>()
     private val taskViewModel by lazy { TaskViewModel(requireActivity().application) }
 
@@ -40,25 +38,23 @@ class ViewFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_view, container, false)
 
-        taskViewModel.deactivateAllTasks()
-
         mainTitle = view.findViewById(R.id.tvTotalmain)
         mainDescription = view.findViewById(R.id.tvDescriptionmain)
         mainTimer = view.findViewById(R.id.tvTimemain)
 
-        val rvMain = view.findViewById<RecyclerView>(R.id.rvMain)
-        adapter = HomeRecyclerView(requireActivity().application, this)
+        rvMain = view.findViewById(R.id.rvMain)
+        adapter = HomeRecyclerView(this)
         rvMain.adapter = adapter
         rvMain.layoutManager = LinearLayoutManager(requireContext()).apply {
             recycleChildrenOnDetach = false
         }
 
-        taskViewModel.getAllTasks().observe(viewLifecycleOwner, {
-                allTasks -> kotlin.run {
-                    adapter.update(allTasks)
-                    tasks = allTasks
-                }
-        })
+        taskViewModel.getAllTasks().observe(viewLifecycleOwner) { allTasks ->
+            kotlin.run {
+                adapter.update(allTasks)
+                tasks = allTasks
+            }
+        }
 
         return view
     }
@@ -71,6 +67,7 @@ class ViewFragment : Fragment() {
             stopActiveTimer()
             updateMoveState()
         }
+
     }
 
     override fun onDestroy() {
@@ -78,6 +75,8 @@ class ViewFragment : Fragment() {
         // stop active timer before app close
         stopActiveTimer()
     }
+
+
 
     private fun didUserMove(): Boolean{
         sharedPreferences = requireActivity().getSharedPreferences(
@@ -107,6 +106,101 @@ class ViewFragment : Fragment() {
                 task.isClicked = false
                 taskViewModel.updateTask(task)
             }
+        }
+    }
+
+    private fun getTotalFromString(oldString: String, newString: String): String {
+        var oldHours = 0
+        val oldMinutes: Int
+        val oldSeconds: Int
+        val oldStringArray = oldString.split(":")
+        if (oldStringArray.size == 2) {
+            oldMinutes = oldStringArray[0].toInt()
+            oldSeconds = oldStringArray[1].toInt()
+        } else {
+            oldHours = oldStringArray[0].toInt()
+            oldMinutes = oldStringArray[1].toInt()
+            oldSeconds = oldStringArray[2].toInt()
+        }
+
+        var newHours = 0
+        var newMinutes: Int
+        var newSeconds: Int
+        val newStringArray = newString.split(":")
+        if (newStringArray.size == 2) {
+            newMinutes = newStringArray[0].toInt() + oldMinutes
+            newSeconds = newStringArray[1].toInt() + oldSeconds
+        } else {
+            newHours = newStringArray[0].toInt() + oldHours
+            newMinutes = newStringArray[1].toInt() + oldMinutes
+            newSeconds = newStringArray[2].toInt() + oldSeconds
+        }
+
+        if (newSeconds >= 60) {
+            newMinutes += newSeconds / 60
+            newSeconds %= 60
+        }
+        if (newMinutes >= 60) {
+            newHours += newMinutes / 60
+            newMinutes %= 60
+        }
+
+        return (if (newHours < 10) "0$newHours" else newHours).toString() +
+                ":" + (if (newMinutes < 10) "0$newMinutes" else newMinutes) +
+                ":" + if (newSeconds < 10) "0$newSeconds" else newSeconds
+    }
+
+    override fun setTitle(title: String) {
+        this.mainTitle.text = title
+    }
+
+    override fun setDescription(description: String) {
+        this.mainDescription.text = description
+    }
+
+    override fun startTimer(task: Task) {
+        setTitle(task.task)
+        setDescription(task.description)
+        this.mainTimer.base = SystemClock.elapsedRealtime() - task.pauseOffset
+        this.mainTimer.start()
+
+        task.isClicked = false
+        taskViewModel.updateTask(task)
+    }
+
+    override fun stopTimer(task: Task) {
+        task.timer = this.mainTimer.text.toString()
+        this.mainTimer.stop()
+        task.pauseOffset = SystemClock.elapsedRealtime() - this.mainTimer.base
+        task.active = false
+        task.isClicked = false
+        taskViewModel.updateTask(task)
+    }
+
+    override fun restartTimer(task: Task) {
+        Log.e("TAG", "${task.totalTime} - ${this.mainTimer.text}")
+        task.totalTime = getTotalFromString(task.totalTime, this.mainTimer.text.toString())
+        this.mainTimer.base = SystemClock.elapsedRealtime()
+        this.mainTimer.stop()
+        task.timer = "00:00"
+        task.pauseOffset = 0
+        task.active = false
+        task.isClicked = false
+
+        taskViewModel.updateTask(task)
+        this.mainTitle.text = ""
+        this.mainDescription.text = ""
+    }
+
+    override fun onTimerClick(task: Task) {
+        task.active = true
+        task.isClicked = true
+        taskViewModel.updateTask(task)
+    }
+
+    override fun onTimerTickListener(callBack: (time: String) -> Unit) {
+        this.mainTimer.onChronometerTickListener = Chronometer.OnChronometerTickListener { mainChronometer ->
+            callBack(mainChronometer.text.toString())
         }
     }
 

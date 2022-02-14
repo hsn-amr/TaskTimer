@@ -3,33 +3,27 @@ package com.example.tasktimer
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
 import android.view.View
-import android.widget.Chronometer
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
-import com.example.tasktimer.fragments.ViewFragment
-import com.example.tasktimer.model.Task
-import com.example.tasktimer.viewmodel.TaskViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var imageView: ImageView
-    lateinit var view1 : View
-    lateinit var fcView: View
+    private lateinit var imageView: ImageView
+    private lateinit var view1 : View
+    private lateinit var fcView: View
     private lateinit var sharedPreferences: SharedPreferences
-    var instructions = 0
+    private var instructions = 0
 
-    lateinit var imageButton: ImageView
-    lateinit var tvInstructions: TextView
+    private lateinit var imageButton: ImageView
+    private lateinit var tvInstructions: TextView
 
-    private val taskViewModel by lazy { TaskViewModel(application) }
-    lateinit var bottomNavView: BottomNavigationView
-    val fragment = ViewFragment()
+    private lateinit var bottomNavView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         //bottomNavView.setupWithNavController(navController)
         ///////////////END of Bottom Navigation///////////////////////////
 
-        bottomNavView.setOnNavigationItemSelectedListener { item ->  // using lamda
+        bottomNavView.setOnItemSelectedListener { item ->  // using lambda
             when(item.itemId){
                 R.id.viewFragment -> {
                     navController.navigate(R.id.viewFragment)
@@ -77,8 +71,13 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Toast.makeText(this, "Timer Paused", Toast.LENGTH_LONG).show()
+    }
     private fun userMoved(){
         with(sharedPreferences.edit()){
             putBoolean("userMoved", true)
