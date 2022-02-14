@@ -19,4 +19,5 @@ Task Timer demo: https://youtu.be/Bz8cLr8ngg4
 ### v 1.1
 Small changes to the user interface
 
-<img src="Home v1.1.png" data-canonical-src="Home v1.1.png" width="200"/>
+<img src="Home v1.1.PNG" data-canonical-src="Home v1.1.PNG" width="200"/>
+
